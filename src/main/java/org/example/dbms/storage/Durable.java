@@ -1,35 +1,31 @@
 package org.example.dbms.storage;
 
-import java.util.Objects;
+import org.example.dbms.data.Data;
+
 import java.util.concurrent.Future;
 
 /**
- * Represents object that is durable.
+ * Represents object that can be persisted to disk or other non-volatile device.
  */
 public interface Durable {
     /**
-     * Write data to disk or other non-volatile device.
-     * @return future wrapper of write result
+     * Set data in memory.
+     *
+     * @param data in memory
      */
-    Future<Boolean> save();
+    void setData(Data data);
 
     /**
-     * Construct from bytes.
+     * Retrieve data from memory or disk.
+     *
+     * @return data
      */
-    void setBytes();
+    Future<Data> getData();
 
     /**
-     * @return bytes in memory
+     * Write memory data to disk or other non-volatile device.
+     *
+     * @return future wrapper of saved length
      */
-    byte[] getBytes();
-
-    /**
-     * @return data length
-     */
-    default int getLength() {
-        byte[] data = getBytes();
-        return Objects.isNull(data) ? 0 : data.length;
-    }
-
-    String toString();
+    Future<Integer> save();
 }
