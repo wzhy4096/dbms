@@ -1,7 +1,14 @@
 package org.example.dbms.data;
 
+import java.util.concurrent.Future;
+
+/**
+ * Abstract of any data.
+ */
 public interface Data {
-    byte[] getBytes();
+    Future<Integer> save();
+
+    Future<byte[]> retrieve();
 
     void setId(Data id);
 

@@ -20,7 +20,21 @@ public interface Durable {
      *
      * @return data
      */
-    Future<Data> getData();
+    Data getData();
+
+    /**
+     * Set storage of data.
+     *
+     * @param storage of data
+     */
+    void setStorage(Storage storage);
+
+    /**
+     * Get storage of data
+     *
+     * @return storage of data
+     */
+    Storage getStorage();
 
     /**
      * Write memory data to disk or other non-volatile device.

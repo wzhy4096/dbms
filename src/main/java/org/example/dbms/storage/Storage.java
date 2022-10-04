@@ -1,27 +1,29 @@
 package org.example.dbms.storage;
 
+import org.example.dbms.data.Data;
+
 /**
- * Container of durable objects. Bytes of storage consists : (1) durable config (2) durable fsm  (3) durable index
- * (4) durable log
+ * Container of durable objects. Storage consists : (1) config  (2) fsm  (3) wal  (4) payload  (5) index
  */
 public interface Storage extends Durable {
-    void setConfig(Durable config);
+    void setConfig(Data config);
 
-    Durable getConfig();
+    Data getConfig();
 
-    void setFsm(Durable fsm);
+    void setFsm(Data fsm);
 
-    Durable getFsm();
+    Data getFsm();
 
-    void setIndex(Durable index);
+    void setWal(Data log);
 
-    Durable getIndex();
+    Data getWal();
 
-    void setLog(Durable log);
+    void setPayload(Data payload);
 
-    Durable getLog();
+    Data getPayload();
 
-    void setData(Durable data);
+    void setIndex(Data index);
 
-    Durable getData();
+    Data getIndex();
+
 }
